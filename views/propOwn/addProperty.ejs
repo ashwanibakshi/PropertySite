@@ -1,0 +1,88 @@
+<%-include('../partial/dashHeader')%>
+ 
+<div class="content-wrapper">
+    <div class="container">
+        <!-- <div class="row pad-botm">
+            <div class="col-md-12">
+                <h4 class="header-line">Blank Page</h4>
+                </div>
+        </div> -->
+   
+   <div class="row">
+    <div class="col-md-12 col-sm-6 col-xs-12">
+       <div class="panel panel-info">
+                <div class="panel-heading">
+                   Add Property
+                </div>
+                <div class="panel-body">
+                    <form role="form" action="/property/addProperty" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label>Property Name</label>
+                            <input class="form-control" type="text" name="pname"  required/>
+                            <!-- <p class="help-block">Help text here.</p> -->
+                        </div>
+                        <div class="form-group">
+                            <label>Property Area Location</label>
+                            <input class="form-control" type="text" name="area" required/>
+                            <!-- <p class="help-block">Help text here.</p> -->
+                        </div>
+                        <div class="form-group">
+                            <label>City</label>
+                            <input class="form-control" type="text" name="city" required/>
+                            <!-- <p class="help-block">Help text here.</p> -->
+                        </div>
+                        <div class="form-group">
+                            <label>State</label>
+                            <input class="form-control" type="text" name="state" required/>
+                            <!-- <p class="help-block">Help text here.</p> -->
+                        </div>
+                                <div class="form-group">
+                                    <label>Add Pics</label>
+                                    <input class="form-control" type="file" name="pic" multiple required/>
+                                    <!-- <p class="help-block">Help text here.</p> -->
+                                </div>
+                         <div class="form-group">
+                                    <label>Property Details</label>
+                                    <!-- <input class="form-control" type="text" /> -->
+                                    <textarea name="details" id="example" cols="30" rows="10" required class="form-control"></textarea>
+                             <!-- <p class="help-block">Help text here.</p> -->
+                                </div>
+                                    <div class="form-group">
+                                    <label>Property Type</label>
+                                    <select name="ptype"  class="form-control" required>
+                                        <option value="">-Select Property Type-</option>
+                                        <option value="flat">Flat</option>
+                                        <option value="villa">Villa</option>
+                                        <option value="pg">PG</option>
+                                        <option value="hostel">Hostel</option>
+                                        <option value="commercial">Commercial</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Property For</label>
+                                    <select name="pfor"  class="form-control" required>
+                                        <option value="">-Select Property For-</option>
+                                        <option value="rent">Rent</option>
+                                        <option value="sale">Sale</option>
+                                        <option value="lease">Lease</option>                                                                          ;;;;;;;eedo</option>
+                                    </select>
+                                </div>
+
+                          <div class="form-group">
+                                    <label>Price</label>
+                                    <input class="form-control" type="text" name="price" required/>
+                                    <!-- <p class="help-block">Help text here.</p> -->
+                          </div>
+
+                                <button type="submit" class="btn btn-info">Save</button>
+
+                            </form>
+                    </div>
+                </div>
+            </div>
+</div>
+
+  </div>
+</div>
+
+<%- include('../partial/dashFooter')%>

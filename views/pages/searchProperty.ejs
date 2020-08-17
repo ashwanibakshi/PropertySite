@@ -1,0 +1,249 @@
+<%- include('../partial/header')%>
+
+  <!-- Start Proerty header  -->
+
+  <section id="aa-property-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="aa-property-header-inner">
+            <h2>Properties Page</h2>
+            <ol class="breadcrumb">
+            <li><a href="#">HOME</a></li>            
+            <li class="active">PROPERTIES</li>
+          </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section> 
+  <!-- End Proerty header  -->
+
+  <!-- Start Properties  -->
+  <section id="aa-properties">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="aa-properties-content">
+            <!-- start properties content head -->
+            <div class="aa-properties-content-head">              
+              <div class="aa-properties-content-head-left">
+                <form action="" class="aa-sort-form">
+                  <label for="">Sort by</label>
+                  <select name="">
+                    <option value="1" selected="Default">Default</option>
+                    <option value="2">Name</option>
+                    <option value="3">Price</option>
+                    <option value="4">Date</option>
+                  </select>
+                </form>
+                <form action="" class="aa-show-form">
+                  <label for="">Show</label>
+                  <select name="">
+                    <option value="1" selected="12">6</option>
+                    <option value="2">12</option>
+                    <option value="3">24</option>
+                  </select>
+                </form>
+              </div>
+              <div class="aa-properties-content-head-right">
+                <a id="aa-grid-properties" href="#"><span class="fa fa-th"></span></a>
+                <a id="aa-list-properties" href="#"><span class="fa fa-list"></span></a>
+              </div>            
+            </div>
+            <!-- Start properties content body -->
+            <%if(data.length>0){%>
+            <div class="aa-properties-content-body">
+              <ul class="aa-properties-nav">
+                <%for(var x=0; x < data.length; x++){%>
+                <li>
+                  <article class="aa-properties-item">
+                    <a class="aa-properties-item-img" href="#">
+                      <img alt="img" src="<%= data[x].pic1%>" style="width:360px;height:300px;">
+                    </a>
+                    <div class="aa-tag for-rent">
+                      <%= data[x].pfor%>
+                    </div>
+                    <div class="aa-properties-item-content">
+                      <div class="aa-properties-info">
+                       <span><b><%= data[x].ptype%></b></span>
+                    </div>
+                      <div class="aa-properties-about">
+                        <h3><a href="#"><%= data[x].pname%></a></h3>
+                        <i class='fas fa-map-marker-alt' style='font-size:24px;color:red'></i> 
+                        <span><%= data[x].area%></span>,<span><%= data[x].city%></span> <span><%=data[x].state%></span>                      
+                      </div>
+                      <div class="aa-properties-detial">
+                        <span class="aa-price">
+                          Rs.<%= data[x].price%>
+                        </span>
+                        <a class="aa-secondary-btn" href="/property/propertyDetail/<%=data[x]._id%>">View Details</a>
+                      </div>
+                    </div>
+                  </article>
+                </li>
+                <%}%>
+              </ul>
+            </div>
+            <%}%>
+            <!-- Start properties content bottom -->
+            <div class="aa-properties-content-bottom">
+              <nav>
+                <% if (pages > 0) { %>   
+                    <ul class="pagination">
+                      <% if (current == 1) { %>
+                        <li class="page-item disabled"><a class="page-link">First</a></li>
+                    <% } else { %>
+                      <%if(temp=="no"){%>
+                <li><a class="page-link" href=<%=urlss%>?page=1 >First</a></li>
+                         <%}else{%>
+                 <li><a class="page-link" href=<%=urls%>&page=1 >First</a></li>
+                          <%}%>
+                    <% } %>
+                    <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                    <% if (i !== 1) { %>
+                        <li class="page-item disabled"><a>...</a></li>
+                    <% } %>
+                    <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                        <% if (i == current) { %>
+                            <li class="page-item active"><a class="page-link"><%= i %></a></li>
+                        <% } else { %>
+                            <%if(temp=="no"){%>
+                            <li><a class="page-link" href=<%=urlss%>?page=<%= i %> ><%= i %></a></li>
+                            <%}else{%>
+                            <li><a class="page-link" href=<%=urls%>&page=<%= i %> ><%= i %></a></li>
+                            <%}%>
+                        <% } %>
+                        <% if (i == Number(current) + 4 && i < pages) { %>
+                            <li class="page-item disabled"><a class="page-link">...</a></li>
+                        <% } %>
+                    <% } %>
+                    <% if (current == pages) { %>
+                        <li class="page-item disabled"><a class="page-link">Last</a></li>
+                    <% } else { %>
+                      <%if(temp=="no"){%>
+                        <li><a class="page-link" href=<%=urlss%>?page=<%= pages %>>Last</a></li>
+                      <%}else{%>
+                        <li><a class="page-link" href=<%=urls%>&page=<%= pages %>>Last</a></li>
+                      <%}%>
+                    <% } %>
+                    </ul>
+                    <%}%>
+              </nav>  
+            </div>
+            
+          </div>
+        </div>
+        <!-- Start properties sidebar -->
+        <div class="col-md-4">
+          <aside class="aa-properties-sidebar">
+            <!-- Start Single properties sidebar -->
+            <div class="aa-properties-single-sidebar">
+              <h3>Properties Search</h3>
+              <form action="/property/searchProperty" method="GET">
+                <div class="aa-single-advance-search">
+                  <select name="state">
+                    <option value="">Select State</option>
+                    <%for(var i=0;i< states.length;i++){%>
+                    <option value="<%= states[i]%>"><%= states[i]%></option>
+                    <%}%>
+                   </select>
+                </div>
+                <div class="aa-single-advance-search">
+                  <select name="ptype" required>
+                    <option value="" selected>Property Type</option>
+                     <option value="flat">Flat</option>
+                     <option value="land">Villa</option>
+                     <option value="plot">PG</option>
+                     <option value="hostel">Hostel</option>
+                     <option value="commercial">Commercial</option>
+                   </select>
+                </div>
+                <div class="aa-single-advance-search">
+                  <select name="pfor" required>
+                    <option value="" selected>Property For</option>
+                    <option value="rent">Rent</option>
+                    <option value="sale">Sale</option>
+                    <option value="lease">Lease</option>
+                  </select>
+                </div>
+                <div class="aa-single-advance-search">
+                  <select name="price" required>
+                    <option value="" selected>Price</option>
+                    <option value="1000-10000">1000-10000</option>
+                    <option value="10000-50000">10000-50000</option>
+                    <option value="50000-100000">50000-100000</option>
+                    <option value="above 100000">Above 100000</option>
+                  </select>
+                </div>
+                <!-- <div class="aa-single-filter-search">
+                  <span>AREA (SQ)</span>
+                  <span>FROM</span>
+                  <span id="skip-value-lower" class="example-val">30.00</span>
+                  <span>TO</span>
+                  <span id="skip-value-upper" class="example-val">100.00</span>
+                  <div id="aa-sqrfeet-range" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
+                  </div>                  
+                </div>
+                <div class="aa-single-filter-search">
+                  <span>PRICE ($)</span>
+                  <span>FROM</span>
+                  <span id="skip-value-lower2" class="example-val">30.00</span>
+                  <span>TO</span>
+                  <span id="skip-value-upper2" class="example-val">100.00</span>
+                  <div id="aa-price-range" class="noUi-target noUi-ltr noUi-horizontal noUi-background">
+                  </div>      
+                </div> -->
+                <div class="aa-single-advance-search">
+                  <input type="submit" value="Search" class="aa-search-btn">
+                </div>
+              </form>
+            </div> 
+            <!-- Start Single properties sidebar -->
+            <div class="aa-properties-single-sidebar">
+              <h3>Populer Properties</h3>
+              <div class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object" src="/img/item/1.jpg" alt="img">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading"><a href="#">This is Title</a></h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>                
+                  <span>$65000</span>
+                </div>              
+              </div>
+              <div class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object" src="/img/item/1.jpg" alt="img">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading"><a href="#">This is Title</a></h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>                
+                  <span>$65000</span>
+                </div>              
+              </div>
+              <div class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object" src="/img/item/1.jpg" alt="img">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading"><a href="#">This is Title</a></h4>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>                
+                  <span>$65000</span>
+                </div>              
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- / Properties  -->
+
+<%- include('../partial/footer')%>

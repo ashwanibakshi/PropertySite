@@ -1,0 +1,89 @@
+<%- include('../partial/dashHeader')%>
+
+<%if(data.length){%>
+<div class="content-wrapper">
+    <div class="container">
+        <!-- <div class="row pad-botm">
+            <div class="col-md-12">
+                <h4 class="header-line">Blank Page</h4>
+                </div>
+        </div> -->
+   
+   <div class="row">
+    <div class="col-md-12 col-sm-6 col-xs-12">
+       <div class="panel panel-info">
+                <div class="panel-heading">
+                   Update Property
+                </div>
+                <div class="panel-body">
+                    <form role="form" action="/property/editProperty" method="POST">
+                        <div class="form-group">
+                            <label>Property Name</label>
+                            <input class="form-control" type="text" name="pname" value="<%= data[0].pname%>" required/>
+                            <!-- <p class="help-block">Help text here.</p> -->
+                        </div>
+                        <div class="form-group">
+                            <label>Property Area Location</label>
+                            <input class="form-control" type="text" name="area" value="<%= data[0].area%>" required/>
+                            <!-- <p class="help-block">Help text here.</p> -->
+                        </div>
+                        <div class="form-group">
+                            <label>City</label>
+                            <input class="form-control" type="text" name="city" value="<%= data[0].city%>" required/>
+                            <!-- <p class="help-block">Help text here.</p> -->
+                        </div>
+                        <div class="form-group">
+                            <label>State</label>
+                            <input class="form-control" type="text" name="state" value="<%= data[0].state%>" required/>
+                            <!-- <p class="help-block">Help text here.</p> -->
+                        </div>
+                        <div class="form-group">
+                                    <label>Property Details</label>
+                                    <!-- <input class="form-control" type="text" /> -->
+                                    <textarea name="details" id="example" cols="30" rows="10" required class="form-control"><%= data[0].details%></textarea>
+                             <!-- <p class="help-block">Help text here.</p> -->
+                        </div>
+                                    <div class="form-group">
+                                    <label>Property Type</label>
+                                    <select name="ptype"  class="form-control" required>
+                                        <%for(var x=0;x < ptype.length;x++){%>
+                                            <% if(ptype[x]==data[0].ptype){ %>
+                                                <option value="<%= data[0].ptype%>" selected><%= data[0].ptype %></option>
+                                           <%}else{%>
+                                            <option value="<%= ptype[x]%>"><%= ptype[x]%></option>
+                                              <%}%>
+                                            <%}%>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>PropertyFor</label>
+                                    <select name="pfor"  class="form-control" required>
+                                      <%for(var x=0;x < pfor.length;x++){%>
+                                        <% if(pfor[x]==data[0].pfor){ %>
+                                            <option value="<%= data[0].pfor%>" selected><%= data[0].pfor %></option>
+                                        <%}else{%>
+                                        <option value="<%= pfor[x]%>"><%= pfor[x]%></option>
+                                          <%}%>
+                                        <%}%>
+                                    </select>
+                                </div>
+
+                          <div class="form-group">
+                                    <label>Price</label>
+                                    <input class="form-control" type="text" name="price" value="<%= data[0].price%>" required/>
+                                    <!-- <p class="help-block">Help text here.</p> -->
+                          </div>
+                                <input type="hidden" value="<%= data[0]._id %>" name="id">  
+                                <button type="submit" class="btn btn-info">Save</button>
+
+                            </form>
+                    </div>
+                </div>
+            </div>
+</div>
+
+  </div>
+</div>
+<%}%>
+
+<%- include('../partial/dashFooter')%>
